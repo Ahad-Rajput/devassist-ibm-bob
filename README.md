@@ -1,6 +1,6 @@
 # DevAssist
 
-> An AI-powered developer workflow assistant built for the **IBM Bob 2.0 Hackathon**.
+> An AI-assisted developer workflow prototype built with **IBM Bob 2.0** for the IBM Bob 2.0 Hackathon.
 
 ## 🎯 Problem
 
@@ -8,48 +8,90 @@ Developers working with unfamiliar codebases can spend significant time understa
 
 ## 💡 Solution
 
-**DevAssist** aims to streamline these workflows by helping developers:
+**DevAssist** is a zero-dependency Python CLI that helps developers:
 
-* 📁 Understand project structure
-* 📄 Explain source files
-* 🔍 Identify potential code issues
-* 📝 Generate project documentation
+| Command | What it does |
+|---|---|
+| `structure` | Print a visual file tree of any project |
+| `explain` | Summarise a source file (classes, functions, imports, line counts) |
+| `issues` | Scan a file for common problems (bare excepts, TODOs, long lines, missing docstrings) |
+| `docs` | Auto-generate a `DOCS.md` file for an entire project |
 
-The goal is to demonstrate how AI-assisted development can reduce manual effort and improve developer productivity.
+## 🚀 Quick Start
+
+Requires Python 3; uses only the standard library (no external package dependencies).
+
+```bash
+# 1. See the project structure
+python src/devassist.py structure sample_project
+
+# 2. Explain a source file
+python src/devassist.py explain sample_project/utils.py
+
+# 3. Find code issues
+python src/devassist.py issues sample_project/utils.py
+
+# 4. Generate documentation
+python src/devassist.py docs sample_project
+```
 
 ## 🧠 IBM Bob
 
 **IBM Bob IDE is a core part of this project.**
 
-Bob is being used for:
+Bob was used for:
 
-* Project planning
-* Feature development
-* Debugging
-* Testing
-* Code review
-* Documentation
+* Project planning & design decisions
+* Writing all source code (`src/devassist.py`)
+* Creating the demo project (`sample_project/`)
+* Generating documentation
+* Session logging (`bob_sessions/`)
 
 ## 🛠️ Technology
 
-* IBM Bob IDE
+* Python 3 (stdlib only — no pip install needed)
+* IBM Bob 2.0 IDE
 * GitHub
-* *Additional technologies will be added during development.*
 
 ## 📂 Project Structure
 
 ```text
 devassist-ibm-bob/
-├── bob_sessions/    # IBM Bob task session evidence
-├── src/             # Application source code
+├── bob_sessions/
+│   └── session_01.md      # IBM Bob session evidence log
+├── sample_project/
+│   ├── main.py            # Demo project entry point
+│   └── utils.py           # Demo utilities (includes intentional issues for demo)
+├── src/
+│   └── devassist.py       # Main CLI tool
 └── README.md
+```
+
+## 🎬 Demo
+
+Running `issues` against the sample project detects real problems:
+
+```
+🔍 Issues found in: sample_project/utils.py
+
+  Line  18: Function missing docstring
+           ↳ def filter_by_status(tasks, status):
+
+  Line  19: Unresolved annotation (TODO/FIXME/HACK/XXX)
+           ↳ # FIXME: status comparison should be case-insensitive
+
+  Line  23: Function missing docstring
+           ↳ def summarise(tasks):
+
+  Line  28: Bare except clause — catches all exceptions including KeyboardInterrupt
+           ↳ except:
+
+  Total: 4 issue(s) found.
 ```
 
 ## 🚧 Status
 
-**Under Development**
-
-Built for the **IBM Bob 2.0 Hackathon**.
+**Working Prototype** — Built for the IBM Bob 2.0 Hackathon.
 
 ## 👥 Team
 
