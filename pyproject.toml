@@ -1,0 +1,24 @@
+[project]
+name = "devassist"
+version = "0.1.0"
+description = "AI-powered developer workflow assistant CLI — built for the IBM Bob 2.0 Hackathon"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name = "THE CODERS" }]
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+devassist = "devassist.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/devassist"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+]
